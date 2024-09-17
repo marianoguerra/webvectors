@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./echarts.js"></script>
+  <script src="./echarts-gl.js"></script>
+  <script src="./umap-js.js"></script>
+  <script src="./tsne.js"></script>
+  <script type="module" src="app.js"></script>
+  <title>Embeddings and t-SNE</title>
+  <style>
+    #items {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      overflow-y: auto;
+      padding-right: 10px;
+    }
+
+    label{
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .input-wrapper {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+    }
+
+    .remove-btn {
+      cursor: pointer;
+    }
+
+    .add-btn {
+      cursor: pointer;
+    }
+
+    .root{
+      width: 100%;
+      height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .actions, .params {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .list {
+      display: grid;
+      grid-template-rows: auto auto 1fr;
+      gap: 10px;
+      max-height: 98vh;
+    }
+  </style>
+</head>
+<body>
+  <div class="root">
+    <div id="main" style="width: 100%; height: 100vh;"></div>
+    <div class="list">
+      <div class="actions">
+        <button class="add-btn">Add Input</button>
+        <button class="clear-btn">Clear</button>
+        <button class="calculate-btn">Calculate</button>
+      </div>
+
+      <div class="params">
+        <select id="algorithm">
+          <option value="t-SNE">t-SNE</option>
+          <option value="UMAP" selected>UMAP</option>
+        </select>
+        <label>Epochs <input id="epochs" value="500" type="number"></label>
+        <label>Perplexity <input id="perplexity" value="15" type="number"></label>
+      </div>
+      <div id="items"></div>
+    </div>
+  </div>
+</body>
+</html>
+
